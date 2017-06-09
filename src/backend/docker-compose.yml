@@ -5,7 +5,7 @@ services:
     image: postgres
   web:
     build: .
-    command: bash "1.sh"
+    command: bash "startup.sh"
     volumes:
       - .:/code
     ports:
