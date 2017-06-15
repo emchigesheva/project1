@@ -53,7 +53,7 @@ import {User} from '../user';
     </div>`,
     providers: [Authentication]
 })
-export class RegComponent implements OnInit {
+export class AppComponent implements OnInit { 
      
     items: User[] = [];
     constructor(private authentication: Authentication){}
