@@ -1,57 +1,26 @@
-version: '2'
+version: '3'
+
 services:
-  postgres:
-    restart: unless-stopped
-    image: blacklabelops/postgres:latest
-    env_file: postgres.env
-    volumes:
-      - postgre_data:/var/lib/postgresql/data
+  db:
+    image: postgres
     ports:
-     - 5432:5432/tcp
-
-  celery:
-    restart: unless-stopped
-    build:
-      context: .
-      dockerfile: ./compose/api/Dockerfile
-    env_file: celery.env
+      - "5432:5432"
+  nginx:
+    image: nginx:latest
+    container_name: ngnx
+    ports:
+      - "80:8000"
+    volumes:
+      - ../src/backend:/code
+      - ../src/backend/config/nginx:/etc/nginx/conf.d
     depends_on:
-      - postgres
-      - rabbit
+      - web
+  web:
+    build: .
+    command: bash "startup.sh"
     volumes:
-    - .:/workers
-    command: ./compose/common/bin/start_worker.sh
-
-  rabbit:
-    restart: unless-stopped
-    image: rabbitmq:3-management
-    volumes:
-      - rabbit_data:/var/lib/rabbit/data
-    ports:
-      - 5672:5672/tcp
-      - 15672:15672/tcp
-
-  cdnapi:
-    restart: unless-stopped
-    build:
-      context: .
-      dockerfile: ./compose/api/Dockerfile
-    env_file: ./cdnapi.env
+      - ../src/backend:/code
+#    ports:
+#      - "8000:8000"
     depends_on:
-      - postgres
-      - rabbit
-      - celery
-    ports:
-      - 8000:8000/tcp
-    volumes:
-      - .:/code
-#   TODO - update docker-compose to new version and use healthchecks
-#    healthcheck:
-#      test: ["CMD", "psql", "-h", "localhost", "-p", "5432"]
-#      interval: 30s
-#      timeout: 10s
-#      retries: 5
-
-volumes:
-  postgre_data:
-  rabbit_data:
+      - db
