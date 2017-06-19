@@ -35,8 +35,8 @@ export class AuthComponent implements OnInit{
 
     clickHandler() {
 
-    for (var i of this.userArray){
-        if((i.email==this.email) &&(i.password==this.password)){
+    for (var user of this.userArray){
+        if((user.email==this.email) &&(user.password==this.password)){
             this.router.navigate(['/home']);
         }
         else{
