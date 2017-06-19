@@ -15,13 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import include, url
+from todolist.views import NewTodoView, DeleteTodoView, ReadTodoView
 from auth_user_jwt.views import UserListAPIView, CreateUserView
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token,verify_jwt_token
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+
     url(r'^token-obtain/', obtain_jwt_token),
     url(r'^token-refresh',refresh_jwt_token),
     url(r'^token-verify/', verify_jwt_token),
-    url(r'^register/', CreateUserView.as_view()),
+    url(r'^register/',CreateUserView.as_view()),
+
+    url(r'^todo/new/', NewTodoView.as_view()),
+    url(r'^todo/(?P<pk>[0-9]+)/', ReadTodoView.as_view()),
+    url(r'^todo/(?P<pk>[0-9]+)/del/', DeleteTodoView.as_view()),
+
 ]

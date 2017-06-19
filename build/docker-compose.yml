@@ -16,7 +16,8 @@ services:
     depends_on:
       - web
   web:
-    build: .
+    build:
+      context: ../src/backend
     command: bash "startup.sh"
     volumes:
       - ../src/backend:/code
