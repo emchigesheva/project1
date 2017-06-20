@@ -9,6 +9,7 @@ import {HomeComponent} from "./home/home.component"
 import {HttpModule} from "@angular/http"
 import {InMemoryWebApiModule} from "angular-in-memory-web-api"
 import {US} from "./fake_backend/fake_backend"
+
 @NgModule({
     imports:
         [

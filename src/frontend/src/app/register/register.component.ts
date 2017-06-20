@@ -5,28 +5,26 @@ import {Router} from "@angular/router"
        
 @Component({
     selector: 'reg',
-    template: 
-    `<h1>Registration</h1>
+    template:
+    `<div class="form">
+        <h1>Registration!</h1>
+        <div class="form-group">
+            <div class="input-group">
+                <label>Email</label>
+                <input [(ngModel)]="email" type="email" placeholder="kt@gmail.com"/>
+                <label>Password</label>
+                <input type="password"[(ngModel)]="password" value="password"/>
+                <button class="btn btn-default" (click)="clickHandler()">Sign Up</button>
+            </div>
+        </div>
+    </div> 
 
-             <div>
-                <div>
-                    
-                    Email:<input type="text" [(ngModel)]="email"/>
-                </div>
-                <div>
-                    Password:<input type="password" [(ngModel)]="password"/>
-                </div>
-            
-            
-                <div class="col-md-offset-2 col-md-8">
-                    <button class="btn btn-default" (click)="clickHandler()">Sign Up</button>
-                </div>
-             </div>
     <div>
     <ul>
         <li *ngFor="let user of userArray">{{user.email}}</li>
     </ul>
     </div>`,
+    styleUrls:['../css/forma.css']
 })
 export class RegComponent implements OnInit {
      

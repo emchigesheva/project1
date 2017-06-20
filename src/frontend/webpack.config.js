@@ -14,6 +14,9 @@ module.exports = {
         publicPath: '/',
         filename: '[name].[hash].js'
     },
+    devServer: {
+        historyApiFallback: true
+    },
     resolve: {
         extensions: ['.ts', '.js']
     },
@@ -44,7 +47,16 @@ module.exports = {
                 test: /\.css$/,
                 include: path.resolve('src', 'app'),
                 loader: 'raw-loader'
-            }]
+            },
+            {
+                test: /\.styl$/,
+                loader: [
+                    'style-loader',
+                    'css-loader',
+                    'stylus-loader?resolve url'
+                ]
+            }
+           ]
     },
 
     plugins: [
