@@ -7,8 +7,6 @@ class Todo(models.Model):
 
      def __unicode__(self):
          return self.name
-
-
 class Todoadmin(admin.ModelAdmin):
     search_fields=['name']
 

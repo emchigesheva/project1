@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import include, url
-from todolist.views import NewTodoView, DeleteTodoView, ReadTodoView
+from todolist.views import NewTodoView, DeleteTodoView, ReadTodoView, UpdateTodoView
 from auth_user_jwt.views import UserListAPIView, CreateUserView
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token,verify_jwt_token
 
@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^register/',CreateUserView.as_view()),
 
     url(r'^todo/new/', NewTodoView.as_view()),
-    url(r'^todo/(?P<pk>[0-9]+)/', ReadTodoView.as_view()),
     url(r'^todo/(?P<pk>[0-9]+)/del/', DeleteTodoView.as_view()),
-
+    url(r'^todo/(?P<pk>[0-9]+)/upd/', UpdateTodoView.as_view()),
+    url(r'^todo/$', ReadTodoView.as_view()),
 ]

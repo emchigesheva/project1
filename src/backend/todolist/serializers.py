@@ -8,11 +8,8 @@ class TodoSerializer(serializers.ModelSerializer):
         todo = Todo(name=validated_data['name'], is_active=validated_data['is_active'])
         todo.save()
         return todo
-    def update(self, instance, validated_data):
-        instance.is_active=False
-        instance.save()
-        return instance
+
     class Meta:
         model = Todo
         fields = ('id','name', 'is_active')
-        lookup_field='name'
+        lookup_field='id'
