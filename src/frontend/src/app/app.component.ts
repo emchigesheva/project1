@@ -4,18 +4,19 @@ import { Component } from '@angular/core';
 
     selector: 'my-app',
     template: `
-        <h2>Lets do this!</h2>
         <div>
+            <router-outlet></router-outlet>
             <nav>
                 <a routerLink="/auth" routerLinkActive="active">Sign IN</a>
+                <label> or </label>
                 <a routerLink="/reg" routerLinkActive="active">Sign UP</a>
             </nav>
-            <router-outlet></router-outlet>
+            
         </div>
     `,
     styles: [` 
-            h1, h2{color:navy;}
-            p{font-size:13px; font-family:Verdana;}
+            nav {text-align: center; margin: auto}
+            a:hover{text-decoration-line: underline}
     `]
 })
 

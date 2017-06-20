@@ -3,22 +3,24 @@ import {Http} from "@angular/http"
 import {Router} from "@angular/router"
 import {User} from '../user';
 
+
 @Component({
     selector: 'login',
     template:
-            `<h1>Login</h1>
-    <div>
-        <label for="email">EMAIL</label>
-        <input [(ngModel)]="email"/>
-    </div>
 
-    <div>
-        <label for="password">Password</label>
-        <input type="password" [(ngModel)]="password"/>
-    </div>
-    <div class="col-md-offset-2 col-md-8">
-        <button class="btn btn-default" (click)="clickHandler()">Sign In</button>
-    </div>`
+        `<div class="form">
+            <h1>Welcome!</h1>
+            <div class="form-group">
+                <div class="input-group">
+                    <label>Email</label>
+                    <input [(ngModel)]="email" type="email" placeholder="kt@gmail.com" autofocus/>
+                    <label>Password</label>
+                    <input type="password"[(ngModel)]="password" value="password"/>
+                    <button class="btn btn-default" (click)="clickHandler()">Sign In</button>
+                </div>
+            </div>
+        </div>`,
+    styleUrls: ['../css/forma.css'],
 })
 export class AuthComponent implements OnInit{
 

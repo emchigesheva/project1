@@ -3,13 +3,11 @@ import { Component, OnInit} from '@angular/core';
 @Component({
     selector: 'home',
     template:
-            `<h1>Home!</h1>
-    
-
-
-    <div class="col-md-offset-2 col-md-8">
+    `<div class="form">
+        <h1>Home!</h1>
         <button class="btn btn-default">Logout</button>
     </div>`,
+    styleUrls: ['../css/forma.css']
 })
 export class HomeComponent {
 

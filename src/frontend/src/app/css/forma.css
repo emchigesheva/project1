@@ -1,0 +1,42 @@
+.form {
+    width: 360px;
+    padding: 8% 0 0;
+    margin:auto;
+    text-align: center;
+}
+.form-group  {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 0;
+    padding: 15px;
+    text-align: left;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form-group input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.form-group input::-moz-placeholder{
+    color: blue;
+}
+.form-group button {
+    font-family: "Roboto", sans-serif;
+    background: #4CAF50;
+    border: 0;
+    width: 100%;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+}
+
