@@ -3,6 +3,7 @@ from todolist.serializers import TodoSerializer
 from rest_framework import generics
 # Create your views here.
 from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
 
 
 class NewTodoView(generics.CreateAPIView):
@@ -11,17 +12,18 @@ class NewTodoView(generics.CreateAPIView):
 
 
 class DeleteTodoView(generics.DestroyAPIView):
-    def get(self, request, pk,format=None):
-        todoitems = Todo.objects.get(pk=pk)
+    def get(self, request, pk):
+        todoitems = get_object_or_404(Todo,pk=pk,owner=request.user.id)
         serializer = TodoSerializer(todoitems)
         return Response(serializer.data)
-    queryset = Todo.objects.all()
-    serializer_class = TodoSerializer
+
 
 class ReadTodoView(generics.ListAPIView):
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
 
 class UpdateTodoView(generics.RetrieveUpdateAPIView):
-    queryset = Todo.objects.all()
-    serializer_class = TodoSerializer
+    def get(self, request, pk):
+        todoitems = get_object_or_404(Todo,pk=pk,owner=request.user.id)
+        serializer = TodoSerializer(todoitems)
+        return Response(serializer.data)
