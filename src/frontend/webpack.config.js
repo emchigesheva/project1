@@ -43,6 +43,7 @@ module.exports = {
                 exclude: path.resolve('src', 'app'),
                 loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap' })
             },
+
             {
                 test: /\.css$/,
                 include: path.resolve('src', 'app'),
@@ -87,5 +88,6 @@ module.exports = {
                 minimize: false
             }
         })
+
     ]
 };

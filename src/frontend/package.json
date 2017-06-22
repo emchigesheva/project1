@@ -2,7 +2,7 @@
   "name": "project1",
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --host 0.0.0.0",
     "build": "rimraf dist && webpack"
   },
   "dependencies": {
@@ -14,7 +14,6 @@
     "@angular/platform-browser": "~4.0.0",
     "@angular/platform-browser-dynamic": "~4.0.0",
     "@angular/router": "~4.0.0",
-    "angular-in-memory-web-api": "~0.3.0",
     "angular2-jwt": "^0.2.3",
     "core-js": "^2.4.1",
     "rxjs": "5.0.1",

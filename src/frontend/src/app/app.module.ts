@@ -7,8 +7,6 @@ import { AuthComponent }   from './login/login.component';
 import {AppComponent} from "./app.component";
 import {HomeComponent} from "./home/home.component"
 import {HttpModule} from "@angular/http"
-import {InMemoryWebApiModule} from "angular-in-memory-web-api"
-import {US} from "./fake_backend/fake_backend"
 
 @NgModule({
     imports:
@@ -22,7 +20,6 @@ import {US} from "./fake_backend/fake_backend"
                 {path: "home", component: HomeComponent},
                 {path: "", redirectTo: "auth", pathMatch: "full"}
     ]),
-            InMemoryWebApiModule.forRoot(US)
 ],
     declarations: [ AppComponent, RegComponent,AuthComponent,HomeComponent ],
     bootstrap:    [ AppComponent ]

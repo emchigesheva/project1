@@ -1,6 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import {User} from '../user';
-import {Http} from "@angular/http"
+import {Http, RequestOptions, RequestMethod} from "@angular/http"
 import {Router} from "@angular/router"
        
 @Component({
@@ -31,6 +30,7 @@ export class RegComponent implements OnInit {
     userArray: any[];
     email: string;
     password: string;
+
     ngOnInit(){
         this.http.get("app/us").subscribe(
             result => this.userArray = result.json().data,
@@ -40,18 +40,17 @@ export class RegComponent implements OnInit {
     constructor(private router: Router, private http: Http){}
      
     clickHandler() {
-        this.http.post("app/us",{
-            email: this.email,
-            password: this.password}).subscribe(
-                result => {let json = result.json();
-                if (json) {
-                    this.userArray.push(json.data);
-                    this.router.navigate(['/auth']);
-                }
-                },
-            error => console.log(error.statusText)
-        ) ;
-        }
-    }
 
+        this.http.post("http://localhost:8000/register",{
+         email: this.email,
+         password: this.password}).subscribe(
+         result => {let json = result.json();
+         if (json) {
+         this.router.navigate(['/auth']);
+         }
+         },
+         error => console.log(error.statusText)
+         ) ;
+         }
+    }
 

@@ -18,8 +18,8 @@ var AuthComponent = (function () {
     };
     AuthComponent.prototype.clickHandler = function () {
         for (var _i = 0, _a = this.userArray; _i < _a.length; _i++) {
-            var i = _a[_i];
-            if ((i.email == this.email) && (i.password == this.password)) {
+            var user = _a[_i];
+            if ((user.email == this.email) && (user.password == this.password)) {
                 this.router.navigate(['/home']);
             }
             else {
@@ -32,7 +32,8 @@ var AuthComponent = (function () {
 AuthComponent = __decorate([
     core_1.Component({
         selector: 'login',
-        template: "<h1>Login</h1>\n    <div>\n        <label for=\"email\">EMAIL</label>\n        <input [(ngModel)]=\"email\"/>\n    </div>\n\n    <div>\n        <label for=\"password\">Password</label>\n        <input type=\"password\" [(ngModel)]=\"password\"/>\n    </div>\n    <div class=\"col-md-offset-2 col-md-8\">\n        <button class=\"btn btn-default\" (click)=\"clickHandler()\">Sign In</button>\n    </div>"
+        template: "<div class=\"form\">\n            <h1>Welcome!</h1>\n            <div class=\"form-group\">\n                <div class=\"input-group\">\n                    <label>Email</label>\n                    <input [(ngModel)]=\"email\" type=\"email\" placeholder=\"kt@gmail.com\" autofocus/>\n                    <label>Password</label>\n                    <input type=\"password\"[(ngModel)]=\"password\" value=\"password\"/>\n                    <button class=\"btn btn-default\" (click)=\"clickHandler()\">Sign In</button>\n                </div>\n            </div>\n        </div>",
+        styleUrls: ['../css/forma.css'],
     })
 ], AuthComponent);
 exports.AuthComponent = AuthComponent;
