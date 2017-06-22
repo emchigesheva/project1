@@ -17,4 +17,5 @@ RUN npm run build
 RUN rm /var/www/html/*
 RUN cp dist/* /var/www/html
 RUN cp default /etc/nginx/sites-available
+
 ENTRYPOINT /usr/sbin/nginx -g "daemon off;"
