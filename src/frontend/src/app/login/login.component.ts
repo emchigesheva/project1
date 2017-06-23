@@ -1,8 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import {Http} from "@angular/http"
 import {Router} from "@angular/router"
-import {User} from '../user';
-
 
 @Component({
     selector: 'login',
@@ -24,30 +22,31 @@ import {User} from '../user';
 })
 export class AuthComponent implements OnInit{
 
-    userArray: any[];
     email: string;
     password: string;
     ngOnInit(){
-        this.http.get("app/us").subscribe(
-            result => this.userArray = result.json().data,
-            error => console.log(error.statusText)
-        );
+
     }
     constructor(private router: Router, private http: Http){}
 
     clickHandler() {
 
-    for (var user of this.userArray){
-        if((user.email==this.email) &&(user.password==this.password)){
-            this.router.navigate(['/home']);
-        }
-        else{
-            console.log("NO USER");
-        }
+
+        this.http.post("http://localhost:8000/token-obtain",{
+            username: this.email,
+            password: this.password}).subscribe(
+            result => {let json = result.json();
+                if (json) {
+                    localStorage.setItem("token", JSON.stringify(json.token));
+                    this.router.navigate(['/home']);
+                }
+            },
+            error => console.log(error.statusText)
+        ) ;
     }
 
 
 
 
-    }
+
 }

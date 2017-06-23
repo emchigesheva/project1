@@ -13,19 +13,19 @@ var AuthComponent = (function () {
         this.http = http;
     }
     AuthComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.http.get("app/us").subscribe(function (result) { return _this.userArray = result.json().data; }, function (error) { return console.log(error.statusText); });
     };
     AuthComponent.prototype.clickHandler = function () {
-        for (var _i = 0, _a = this.userArray; _i < _a.length; _i++) {
-            var user = _a[_i];
-            if ((user.email == this.email) && (user.password == this.password)) {
-                this.router.navigate(['/home']);
+        var _this = this;
+        this.http.post("http://localhost:8000/token-obtain", {
+            username: this.email,
+            password: this.password
+        }).subscribe(function (result) {
+            var json = result.json();
+            if (json) {
+                localStorage.setItem("token", JSON.stringify(json.token));
+                _this.router.navigate(['/home']);
             }
-            else {
-                console.log("NO USER");
-            }
-        }
+        }, function (error) { return console.log(error.statusText); });
     };
     return AuthComponent;
 }());

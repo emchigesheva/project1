@@ -18,7 +18,7 @@ import {HttpModule} from "@angular/http"
                 {path: "reg", component: RegComponent},
                 {path: "auth", component: AuthComponent},
                 {path: "home", component: HomeComponent},
-                {path: "", redirectTo: "auth", pathMatch: "full"}
+                {path: "", redirectTo: "home", pathMatch: "full"}
     ]),
 ],
     declarations: [ AppComponent, RegComponent,AuthComponent,HomeComponent ],
