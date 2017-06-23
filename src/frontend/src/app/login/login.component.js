@@ -13,6 +13,19 @@ var AuthComponent = (function () {
         this.http = http;
     }
     AuthComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.token = JSON.parse(localStorage.getItem("token"));
+        this.http.post("http://localhost:8000/token-verify", {
+            token: this.token
+        }).subscribe(function (result) {
+            var json = result.json();
+            if (json) {
+                _this.router.navigate(['/home']);
+            }
+        }, function (error) {
+            console.log(error.statusText);
+            _this.router.navigate(['/auth']);
+        });
     };
     AuthComponent.prototype.clickHandler = function () {
         var _this = this;
@@ -32,7 +45,7 @@ var AuthComponent = (function () {
 AuthComponent = __decorate([
     core_1.Component({
         selector: 'login',
-        template: "<div class=\"form\">\n            <h1>Welcome!</h1>\n            <div class=\"form-group\">\n                <div class=\"input-group\">\n                    <label>Email</label>\n                    <input [(ngModel)]=\"email\" type=\"email\" placeholder=\"kt@gmail.com\" autofocus/>\n                    <label>Password</label>\n                    <input type=\"password\"[(ngModel)]=\"password\" value=\"password\"/>\n                    <button class=\"btn btn-default\" (click)=\"clickHandler()\">Sign In</button>\n                </div>\n            </div>\n        </div>",
+        template: "<div class=\"form\">\n            <h1>Welcome!</h1>\n            <div class=\"form-group\">\n                <div class=\"input-group\">\n                    <label>Email</label>\n                    <input [(ngModel)]=\"email\" type=\"email\" placeholder=\"kt@gmail.com\" autofocus/>\n                    <label>Password</label>\n                    <input type=\"password\"[(ngModel)]=\"password\" value=\"password\"/>\n                    <button class=\"btn_log\" (click)=\"clickHandler()\">Sign In</button>\n                </div>\n            </div>\n        </div>",
         styleUrls: ['../css/forma.css'],
     })
 ], AuthComponent);

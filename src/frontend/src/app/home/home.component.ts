@@ -15,14 +15,11 @@ export class HomeComponent implements OnInit{
 
     ngOnInit(){
         this.token = JSON.parse(localStorage.getItem("token"));
-        console.log(this.token);
         this.http.post("http://localhost:8000/token-verify",{
             token: this.token}).subscribe(
             result => {let json = result.json();
                 if (json) {
 
-                    console.log(JSON.stringify(json.token));
-                    console.log(JSON.stringify(this.token));
                     this.router.navigate(['/home']);
                 }
             },

@@ -13,29 +13,36 @@ import {Router} from "@angular/router"
                 <input [(ngModel)]="email" type="email" placeholder="kt@gmail.com"/>
                 <label>Password</label>
                 <input type="password"[(ngModel)]="password" value="password"/>
-                <button class="btn btn-default" (click)="clickHandler()">Sign Up</button>
+                <button class="btn_reg" (click)="clickHandler()">Sign Up</button>
             </div>
         </div>
-    </div> 
-
-    <div>
-    <ul>
-        <li *ngFor="let user of userArray">{{user.email}}</li>
-    </ul>
     </div>`,
     styleUrls:['../css/forma.css']
 })
 export class RegComponent implements OnInit {
-     
-    userArray: any[];
+
     email: string;
     password: string;
+    token: string;
 
     ngOnInit(){
-        this.http.get("app/us").subscribe(
-            result => this.userArray = result.json().data,
-            error => console.log(error.statusText)
-        );
+
+            this.token = JSON.parse(localStorage.getItem("token"));
+            this.http.post("http://localhost:8000/token-verify",{
+                token: this.token}).subscribe(
+                result => {let json = result.json();
+                    if (json) {
+
+                        this.router.navigate(['/home']);
+                    }
+                },
+                error => {
+                    console.log(error.statusText)
+                    this.router.navigate(['/reg'])
+                }
+            ) ;
+
+
     }
     constructor(private router: Router, private http: Http){}
      
